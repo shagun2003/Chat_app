@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 4500
 
 app.use(cors({
-  origin: ["https://chat-app-wn4o.vercel.app"], // Frontend URL
+  origin: "https://chat-app-wwqf.vercel.app/", // Frontend URL
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"],
   credentials: true
