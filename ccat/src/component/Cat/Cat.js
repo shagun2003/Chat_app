@@ -7,7 +7,7 @@ import send from './send.png';
 import { user } from '../join/join';
 import closeIcon from './closeIcon.png';
 
-const ENDPOINT = 'http://localhost:4500/';
+const ENDPOINT = 'https://chat-app-ecru-psi.vercel.app/';
 let socket;
 
 const Cat = () => {
