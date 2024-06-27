@@ -9,7 +9,6 @@ const port = process.env.PORT || 4500
 app.use(cors({
   origin: "https://chat-app-wwqf.vercel.app/", // Frontend URL
   methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type"],
   credentials: true
 }));
 
