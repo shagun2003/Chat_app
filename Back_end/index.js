@@ -9,7 +9,12 @@ const port=process.env.PORT ;
 
 const users=[{}];
 
-app.use(cors());
+app.use(cors({
+  origin:"https://chat-app-wn4o.vercel.app/" ,
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true
+}));
 app.get("/",(req,res)=>{
     res.send("HELL ITS WORKING");
 })
