@@ -24,7 +24,7 @@ const Cat = () => {
 
   useEffect(() => {
     socket = socketIo(ENDPOINT, { transports: ['websocket'] });
-    socket.on('connect', () => {
+    socket.on('connection', () => {
       alert('connected');
       setId(socket.id);
     });
