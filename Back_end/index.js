@@ -4,17 +4,11 @@ const cors = require("cors");
 const socketIO = require("socket.io");
 
 const app = express();
-const port = process.env.PORT; 
+const port = process.env.PORT || 4000;
 
 const users = {};
 
-
-app.use(cors({
-  origin: "https://chat-app-wwqf.vercel.app", 
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type"],
-  credentials: true
-}));
+app.use(cors());
 
 // Simple route for testing
 app.get("/", (req, res) => {
@@ -23,7 +17,12 @@ app.get("/", (req, res) => {
 
 // Create HTTP server and setup Socket.IO
 const server = http.createServer(app);
-const io = socketIO(server);
+const io = socketIO(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
 
 io.on("connection", (socket) => {
   console.log("New Connection");
@@ -40,9 +39,11 @@ io.on("connection", (socket) => {
   });
 
   socket.on('disconnect', () => {
-    socket.broadcast.emit('leave', { user: "Admin", message: `${users[socket.id]} has left` });
-    console.log('User left');
-    delete users[socket.id]; // Clean up user from list
+    if (users[socket.id]) {
+      socket.broadcast.emit('leave', { user: "Admin", message: `${users[socket.id]} has left` });
+      console.log('User left');
+      delete users[socket.id]; // Clean up user from list
+    }
   });
 });
 
