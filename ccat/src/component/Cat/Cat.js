@@ -23,7 +23,10 @@ const Cat = () => {
   };
 
   useEffect(() => {
-    socket = socketIo(ENDPOINT, { transports: ['websocket'] });
+    socket = socketIo(ENDPOINT, { 
+      transports: ['websocket'], 
+      secure: true 
+    });
     socket.on('connect', () => {
       alert('connected');
       setId(socket.id);
