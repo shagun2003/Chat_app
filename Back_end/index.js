@@ -4,7 +4,7 @@ const cors = require("cors");
 const socketIO = require("socket.io");
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4500;
 
 const users = {};
 
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 const server = http.createServer(app);
 const io = socketIO(server, {
   cors: {
-    origin: "*",
+    origin: "https://chat-app-wwqf.vercel.app/",
     methods: ["GET", "POST"]
   }
 });
