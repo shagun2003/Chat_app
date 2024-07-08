@@ -19,8 +19,9 @@ app.get("/", (req, res) => {
 const server = http.createServer(app);
 const io = socketIO(server, {
   cors: {
-    origin: "https://chat-app-wwqf.vercel.app/",
-    methods: ["GET", "POST"]
+    origin: "https://chat-app-wwqf.vercel.app", // Replace with your frontend URL
+    methods: ["GET"],
+    credentials: true
   }
 });
 
